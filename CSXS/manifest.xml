@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="4.0" ExtensionBundleId="GNMPanel" ExtensionBundleVersion="0.1"
+ExtensionBundleName="GNM Panel" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ExtensionList>
+		<Extension Id="GNMPanel" Version="9.0.0" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="PPRO" Version="[8.0,9.9]" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="5.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+
+	<DispatchInfoList>
+		<Extension Id="GNMPanel">
+			<DispatchInfo >
+				<Resources>
+					<MainPath>./index.html</MainPath>
+					<ScriptPath>./GNMPanel.jsx</ScriptPath>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+					<StartOn>
+						<!-- PPro dispatches this event on startup -->
+						<Event>com.adobe.csxs.events.ApplicationActivate</Event>
+					</StartOn>
+				</Lifecycle>
+				<CEFCommandLine>
+				    <Parameter>--allow-file-access</Parameter>
+				    <Parameter>--allow-file-access-from-files</Parameter>
+				</CEFCommandLine>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>Asset Folder</Menu>
+					<Geometry>
+						<Size>
+							<Height>100</Height>
+							<Width>260</Width>
+						</Size>
+					</Geometry>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
