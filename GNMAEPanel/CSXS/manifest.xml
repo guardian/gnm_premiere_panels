@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<ExtensionManifest Version="4.0" ExtensionBundleId="GNMAEPanel"  ExtensionBundleVersion="0.1"
+		ExtensionBundleName="SimpleScript" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ExtensionList>
+		<Extension Id="GNMAEPanel" Version="0.1" />
+	</ExtensionList>
+    
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="AEFT" Version="[13.0,15.9]" />
+			<Host Name="PPRO" Version="[7.0,10.9]" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="4.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+    
+	<DispatchInfoList>
+		<Extension Id="GNMAEPanel">
+			<DispatchInfo >
+				<Resources>
+                    <MainPath>./index.html</MainPath>
+                    <ScriptPath>./MainScript.jsx</ScriptPath>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>Asset Folder</Menu>
+					<Geometry>
+						<Size>
+							<Height>100</Height>
+							<Width>250</Width>
+						</Size>
+					</Geometry>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
