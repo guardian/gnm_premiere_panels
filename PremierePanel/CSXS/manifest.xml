@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="4.0" ExtensionBundleId="GNMPanel" ExtensionBundleVersion="0.1"
+<ExtensionManifest Version="4.0" ExtensionBundleId="GNMPanel" ExtensionBundleVersion="0.2"
 ExtensionBundleName="GNM Panel" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ExtensionList>
-		<Extension Id="GNMPanel" Version="9.0.0" />
+		<Extension Id="GNMPanel" Version="0.2" />
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
