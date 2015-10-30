@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <ExtensionManifest Version="4.0" ExtensionBundleId="GNMAEPanel"  ExtensionBundleVersion="0.1"
-		ExtensionBundleName="SimpleScript" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		ExtensionBundleName="GNMAEPanel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
 		<Extension Id="GNMAEPanel" Version="0.1" />
 	</ExtensionList>
