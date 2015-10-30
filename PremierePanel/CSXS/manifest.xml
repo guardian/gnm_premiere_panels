@@ -40,8 +40,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 					<Menu>Asset Folder</Menu>
 					<Geometry>
 						<Size>
-							<Height>120</Height>
-							<Width>300</Width>
+							<Height>160</Height>
+							<Width>400</Width>
 						</Size>
 					</Geometry>
 				</UI>
