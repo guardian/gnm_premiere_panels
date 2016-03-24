@@ -1,0 +1,127 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link id="ppstyle" rel="stylesheet" type="text/css" href="css/style.css">
+		<title>PlutoExport</title>
+	</head>
+	
+	<body onLoad="onLoaded()">
+
+		<!-- <p id="version_string">[uninitialized]</p> -->
+		<!-- <p id="active_seq">[uninitialized]</p> -->
+		<!-- <p id="preset_files">[uninitialized]</p> -->
+
+		<!-- // These have JavaScript handlers... --> 
+
+		<!-- <button id="getseqname">Get active sequence</button> -->
+
+
+		<!-- ...the rest call directly into ExtendScript. -->
+
+		<!-- <button class="controlBg textStyle" id="btn_PPRO1"		onClick="evalScript('$._PPP_.render()')">Render active sequence using AME</button>
+		<button class="controlBg textStyle" id="btn_PPRO6"		onClick="evalScript('$._PPP_.exportFCPXML()')">Export FCP XML</button>
+		<button class="controlBg textStyle" id="btn_PPRO27"  onClick="evalScript('$._PPP_.saveXML()')">Save XML</button>
+		<button class="controlBg textStyle" id="btn_PPRO2"  onClick="evalScript('$._PPP_.plutoexport(\'Test\')')">Export to Pluto</button> -->
+
+		<div id="dragthing" draggable="true" style="width:0" ondragstart="dragHandler(event)"></div>
+		<!-- <p>Export to Pluto using: -</p>
+		<p id="pbd"></p> -->
+		
+		<p id="fni"></p>
+		<!-- <input type="button" value="READ" onClick="readBOX()"> -->
+		
+		<p style="color:white">Export to Pluto using: -</p>
+		<p id="pbd2"></p>
+	</body>
+
+	<script src="./ext.js"></script>
+	<script src="./lib/CSInterface.js"></script>
+	<script src="./lib/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+
+		$( document ).ready(function() {
+
+			$("#getseqname").on("click", function(e){
+				e.preventDefault(); 
+				var csInterface = new CSInterface();
+				csInterface.evalScript('$._PPP_.getActiveSequenceName()', myCallBackFunction);  
+				//csInterface.evalScript('$._PPP_.getSequenceProxySetting()', myGetProxyFunction);
+			});
+			
+			
+		});
+		
+		setTimeout(getbuttons, 10);
+		
+		function getbuttons() {
+			var csInterface2 = new CSInterface();
+        	csInterface2.evalScript('$._PPP_.getRenderPresets()', function(result2) {
+ 
+        	
+					var data = result2.split(",");
+
+					var presets = '';
+
+					 for (i = 0; i < data.length; i++) {
+						var entry = data[i];
+	
+						var input = entry.replace(/^.*[\\\/]/, '');
+						
+						var fixing = input.replace('.epr', '');
+						
+						var fixed = fixing.replace(/%20/g, ' ');
+	
+						presets = presets + '<input style="color:white;" type="button" value="'+fixed+'" onClick="exportNow(\''+entry+'\')">';
+					}
+                	document.getElementById("pbd2").innerHTML= presets;
+            	});
+		}
+		
+
+        
+        function readBOX() {
+        	var txtinput = document.getElementById('txtinput').value;
+        	alert("You typed " + txtinput);
+        }
+        
+        function exportNow(preset) {
+        	var txtinput = document.getElementById('txtinput').value;
+        	var fixing = txtinput.replace(/_/g, '');
+        	var fixed = fixing.replace(/ /g, '');
+        	//alert("You typed " + fixed);
+        	//alert(preset);
+        	var testme = fixed.substring(0,6);
+        	isNaN(testme)
+        	
+        	if (fixed.length == 6) {
+        		var csInterface = new CSInterface();
+        		csInterface.evalScript('$._PPP_.badfilename()'); 
+        	} else if (isNaN(testme) == true){
+        		var csInterface = new CSInterface();
+        		csInterface.evalScript('$._PPP_.badfilenamedate()'); 
+        	} else {
+        		var csInterface = new CSInterface();
+        		csInterface.evalScript('$._PPP_.plutoexport(\''+preset+'\',\''+fixed+'\')'); 
+        	}
+        }
+        
+        var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var year = today.getFullYear();
+		var yy = year.toString().substr(2,2);
+
+		if(dd<10) {
+    		dd='0'+dd
+		} 
+
+		if(mm<10) {
+    		mm='0'+mm
+		} 
+     
+		document.getElementById("fni").innerHTML= '<div style="color:white;font-family:"LucidaGrande", sans-serif;">File Name: <input style="color:white;background:black;" type="text" id="txtinput" value="'+yy+mm+dd+'" size="40"></div>';
+
+	</script>
+</html>
